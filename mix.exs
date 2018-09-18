@@ -4,11 +4,16 @@ defmodule Dependency.MixProject do
   def project do
     [
       app: :dependency,
+      description: "Dependency injection for Elixir",
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "Dependency",
+      licenses: [
+        "MIT"
+      ],
+      links: %{},
       source_url: "https://github.com/joshnuss/dependency",
       homepage_url: "http://github.com/joshnuss/dependency",
       docs: [
