@@ -16,6 +16,17 @@ def deps do
 end
 ```
 
+Also, you'll need to add the application to your list of applications
+
+```elixir
+def application do
+  [
+    # ...
+    extra_applications: [:dependency],
+  ]
+end
+```
+
 ## Usage
 
 Dependency injection allows you to swap out dependencies when you test your objects.
