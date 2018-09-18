@@ -1,11 +1,12 @@
 # Inject
 
-**TODO: Add description**
+Dependency injection to simplify your unit testing.
+
+Inspired by [constantizer](https://github.com/aaronrenner/constantizer)
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `inject` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `inject` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,7 +16,26 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/inject](https://hexdocs.pm/inject).
+## Usage
 
+Dependency injection allows you to swap out dependencies when you test your objects.
+
+In test mode a `Registry` is used that holds a mapping between dependency name and implementation.
+
+### Resolving a dependency
+
+```elixir
+import Inject
+
+mod = Inject.resolve(MyModule)
+```
+
+### Registering an implementation
+
+```elixir
+Inject.register(MyModule, MyImplementation)
+```
+
+## License
+
+MIT
