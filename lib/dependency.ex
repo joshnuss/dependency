@@ -7,7 +7,9 @@ defmodule Dependency do
   alias Dependency.MissingError
 
   @doc """
-  Start the dependency registry. This is done for you if you add `:dependency` to list of apps in your `mix.exs`.
+  Starts the dependency registry.
+
+  This is done for you if you add `:dependency` to list of apps in your `mix.exs`.
 
   Returns `{:ok, pid}`
   """
