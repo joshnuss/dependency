@@ -1,6 +1,6 @@
 # Dependency
 
-Dependency injection for Elixir.
+Dependency injection for Elixir. [Full documentation](https://hexdocs.pm/dependency)
 
 Dependency injection allows you to swap out dependencies when unit testing your modules.
 
