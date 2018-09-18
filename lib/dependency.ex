@@ -18,7 +18,7 @@ defmodule Dependency do
   defmacro resolve(name) do
     quote do
       if Mix.env() == :test do
-        dynamically_resolve(unquote(name))
+        Dependency.dynamically_resolve(unquote(name))
       else
         unquote(name)
       end
