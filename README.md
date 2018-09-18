@@ -1,4 +1,4 @@
-# Inject
+# Dependency
 
 Dependency injection to simplify your unit testing.
 
@@ -6,12 +6,12 @@ Inspired by [constantizer](https://github.com/aaronrenner/constantizer)
 
 ## Installation
 
-The package can be installed by adding `inject` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `dependency` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:inject, "~> 0.1.0"}
+    {:dependency, "~> 0.1.0"}
   ]
 end
 ```
@@ -25,15 +25,15 @@ In test mode a `Registry` is used that holds a mapping between dependency name a
 ### Resolving a dependency
 
 ```elixir
-import Inject
+import Dependency
 
-mod = Inject.resolve(MyModule)
+mod = Dependency.resolve(MyModule)
 ```
 
 ### Registering an implementation
 
 ```elixir
-Inject.register(MyModule, MyImplementation)
+Dependency.register(MyModule, MyImplementation)
 ```
 
 ## License

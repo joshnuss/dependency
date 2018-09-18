@@ -1,5 +1,5 @@
-defmodule Inject do
-  alias Inject.MissingError
+defmodule Dependency do
+  alias Dependency.MissingError
 
   def start_link do
     Registry.start_link(keys: :unique, name: Dependency.Registry)

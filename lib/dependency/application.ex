@@ -1,4 +1,4 @@
-defmodule Inject.Application do
+defmodule Dependency.Application do
   @moduledoc false
 
   use Application
@@ -8,7 +8,7 @@ defmodule Inject.Application do
       { Registry, keys: :unique, name: Dependency.Registry}
     ]
 
-    opts = [strategy: :one_for_one, name: Inject.Supervisor]
+    opts = [strategy: :one_for_one, name: Dependency.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
