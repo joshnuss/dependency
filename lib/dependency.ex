@@ -6,7 +6,6 @@ defmodule Dependency do
 
   In dev and production modes, the dependency in compiled inline.
   """
-  alias Dependency.MissingError
 
   @doc """
   Starts the dependency registry.
@@ -59,24 +58,86 @@ defmodule Dependency do
 
   """
   @spec resolve(module()) :: module()
-  defmacro resolve(name) do
+  defmacro resolve(mod) do
     quote do
       if Mix.env() == :test do
-        Dependency.dynamically_resolve(unquote(name))
+        Dependency.dynamically_resolve(unquote(mod))
       else
-        unquote(name)
+        unquote(mod)
+      end
+    end
+  end
+
+  @doc """
+  Defines a public constant
+
+  Returns `module`
+
+  ## Examples
+
+    iex> defmodule Bar do
+    iex>   def value, do: 123
+    iex> end
+    iex>
+    iex> defmodule Foo do
+    iex>   import Dependency
+    iex>
+    iex>   defconst :bar, Bar
+    iex> end
+    iex>
+    iex> Foo.bar().value()
+    123
+
+  """
+  @spec defconst(atom() | String.t, module()) :: module()
+  defmacro defconst(name, module) do
+    quote do
+      def unquote(name)() do
+        resolve(unquote module)
+      end
+    end
+  end
+
+  @doc """
+  Defines a private constant
+
+  Returns `module`
+
+  ## Examples
+
+    iex> defmodule Baz do
+    iex>   def value, do: 123
+    iex> end
+    iex>
+    iex> defmodule Qux do
+    iex>   import Dependency
+    iex>
+    iex>   defconstp :baz, Baz
+    iex>
+    iex>   def value, do: baz().value
+    iex> end
+    iex>
+    iex> Qux.value()
+    123
+
+  """
+  @spec defconstp(atom() | String.t, module()) :: module()
+  defmacro defconstp(name, module) do
+    quote do
+      defp unquote(name)() do
+        resolve(unquote module)
       end
     end
   end
 
   @doc false
-  def dynamically_resolve(name) do
-    case Registry.lookup(Dependency.Registry, name) do
+  def dynamically_resolve(mod) do
+    case Registry.lookup(Dependency.Registry, mod) do
       [{_pid, implementation}] ->
         implementation
 
       [] ->
-        raise MissingError, message: "dependency #{name} is not registered"
+        mod
     end
   end
 end

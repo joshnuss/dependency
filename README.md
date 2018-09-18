@@ -48,6 +48,20 @@ mod = Dependency.resolve(MyModule)
 Dependency.register(MyModule, MyImplementation)
 ```
 
+### Defining a constant
+
+```elixir
+defmodule Example do
+  import Dependency
+
+  # define a public constant/accesor
+  defconst :foo, Foo
+end
+
+# call accesor to resolve dependecy
+Example.foo == Foo
+```
+
 ## License
 
 MIT

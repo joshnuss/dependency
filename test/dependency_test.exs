@@ -2,10 +2,8 @@ defmodule DependencyTest do
   use ExUnit.Case
   doctest Dependency
 
-  test "raises MissingError when dependency was not defined" do
-    assert_raise Dependency.MissingError, fn ->
-      Dependency.resolve(Foo)
-    end
+  test "returns default dependency was not defined" do
+    assert Dependency.resolve(Foo) == Foo
   end
 
   test "resolves with registered dependency" do
