@@ -1,8 +1,10 @@
 defmodule Dependency do
   @moduledoc """
-  Fuctions to build soft dependencies between modules. This is useful when you want to test with diffirent situations in test mode.
+  Fuctions to build soft dependencies between modules. This is useful when you want to test different implementations in test mode.
 
-  The resolution is dynamic in test mode (uses `Registry`). In dev and production modes, the dependency in compiled inline.
+  The resolution is dynamic in test mode (uses a `Registry`).
+
+  In dev and production modes, the dependency in compiled inline.
   """
   alias Dependency.MissingError
 
