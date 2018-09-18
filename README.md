@@ -1,6 +1,11 @@
 # Dependency
 
-Dependency injection to simplify your unit testing.
+Dependency injection for Elixir.
+
+Dependency injection allows you to swap out dependencies when unit testing your modules.
+
+In test mode a `Registry` is used that holds a mapping between dependency name and implementation.
+In dev and production mode, the dependency is compiled inline - there is no perormance hit.
 
 Inspired by [constantizer](https://github.com/aaronrenner/constantizer)
 
@@ -28,10 +33,6 @@ end
 ```
 
 ## Usage
-
-Dependency injection allows you to swap out dependencies when you test your objects.
-
-In test mode a `Registry` is used that holds a mapping between dependency name and implementation.
 
 ### Resolving a dependency
 
