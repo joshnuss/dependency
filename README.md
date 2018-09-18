@@ -4,8 +4,8 @@ Dependency injection for Elixir. [Full documentation](https://hexdocs.pm/depende
 
 Dependency injection allows you to swap out dependencies when unit testing your modules.
 
-In test mode a `Registry` is used that holds a mapping between dependency name and implementation.
-In dev and production mode, the dependency is compiled inline - there is no perormance hit.
+In test mode, dependency resolution is dynamic (it uses a `Registry` lookup the current implementation).
+In dev and production mode, doing a lookup would be slow and cause a bottleneck, so the dependency is compiled inline with a macro - eliminating any perormance hit.
 
 Inspired by [constantizer](https://github.com/aaronrenner/constantizer)
 
