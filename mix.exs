@@ -4,16 +4,17 @@ defmodule Dependency.MixProject do
   def project do
     [
       app: :dependency,
-      description: "Dependency injection for Elixir",
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "Dependency",
-      licenses: [
-        "MIT"
-      ],
-      links: %{},
+
+      # Hex
+      description: "Dependency injection for Elixir",
+      package: package(),
+
+      # Docs
       source_url: "https://github.com/joshnuss/dependency",
       homepage_url: "http://github.com/joshnuss/dependency",
       docs: [
@@ -27,6 +28,13 @@ defmodule Dependency.MixProject do
     [
       extra_applications: [:logger],
       mod: {Dependency.Application, []}
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/joshnuss/dependency"},
     ]
   end
 
