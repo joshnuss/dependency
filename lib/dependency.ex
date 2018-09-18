@@ -31,7 +31,9 @@ defmodule Dependency do
   @spec register(module(), module()) :: {:ok, module()}
   def register(mod, implementation) do
     case Registry.register(Dependency.Registry, mod, implementation) do
-      {:ok, _pid} -> {:ok, implementation}
+      {:ok, _pid} ->
+        {:ok, implementation}
+
       {:error, {:already_registered, _pid}} ->
         :ok = Registry.unregister(Dependency.Registry, mod)
         register(mod, implementation)
@@ -68,6 +70,7 @@ defmodule Dependency do
     case Registry.lookup(Dependency.Registry, name) do
       [{_pid, implementation}] ->
         implementation
+
       [] ->
         raise MissingError, message: "dependency #{name} is not registered"
     end

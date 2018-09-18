@@ -8,7 +8,6 @@ defmodule Dependency.MixProject do
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-
       name: "Dependency",
       source_url: "https://github.com/joshnuss/dependency",
       homepage_url: "http://github.com/joshnuss/dependency",
